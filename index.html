@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>NUBLE</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+    <header></header>
+
+    <main>
+        <div id="leftPanel">
+            <p id="moves">MOVES: </p>
+            <P id="time">TIME: <span id="minutes">0</span>: <span id="seconds">0</span></P>
+            <button onclick="undo()">UNDO</button>
+            <br>
+            <button onClick="window.location.reload();">NEW GAME</button>
+            <br>
+            <button>AUTO SAVE</button>
+        </div>
+        <div id="grid-container" class="easy" onclick="gridClicked(event);">
+        </div>
+
+        <div id="rightPanel">
+            <h4>---MOVES---</h4>
+        </div>
+        <div id="btnPanel">
+            <button onclick="easy()">EASY</button>
+            <button onclick="medium()">MEDIUM</button>
+            <button onclick="hard()">HARD</button>
+        </div>
+    </main>
+    <script src="./index.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</body>
+</html>

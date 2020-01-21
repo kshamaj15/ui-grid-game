@@ -1,0 +1,108 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    height: 10%;
+    width: 100%;
+    background-color: yellow;
+}
+
+main {
+    background-color: rgb(101, 233, 233);
+    height: 90%;
+    widows: 100%;
+    position: relative;
+}
+
+#grid-container {
+    display: grid;
+    text-align: center;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgb(41, 209, 209);
+    padding: 10px;
+}
+
+.easy {
+    grid-template-columns: auto auto auto;
+}
+
+.medium{
+    grid-template-columns: auto auto auto auto;
+}
+
+.hard{
+    grid-template-columns: auto auto auto auto auto;
+}
+
+.grid-item {
+    height: 50px;
+    width: 50px;
+    margin: 5px;
+    background-color: wheat;
+    border-radius: 10px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.blank-item {
+    height: 50px;
+    width: 50px;
+    margin: 5px;
+    background-color: rgb(14, 10, 3);
+    border-radius: 10px;
+    font-size: 25px;
+}
+
+#leftPanel {
+    position: absolute;
+    left: 5%;
+    top: 10%;
+    min-width: 200px;
+    min-height: 200px;
+}
+
+p {
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+button {
+    background-color: rgb(111, 49, 153);
+    color: white;
+    font-family: sans-serif;
+    font-weight: 500;
+    width: 100px;
+    margin: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#rightPanel {
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    width: 200px;
+    height: 300px;    
+    background-color: rgb(41, 209, 209);
+    overflow: scroll;
+}
+
+#btnPanel {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.move {
+    font-size: 20px;
+    font-weight: 400;
+    padding: 5px;
+    margin: 5px;
+}
