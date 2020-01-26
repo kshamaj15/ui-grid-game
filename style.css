@@ -47,6 +47,7 @@ main {
     border-radius: 10px;
     font-size: 25px;
     cursor: pointer;
+    vertical-align: middle;
 }
 
 .blank-item {
@@ -91,6 +92,7 @@ button {
     height: 300px;    
     background-color: rgb(41, 209, 209);
     overflow: scroll;
+    
 }
 
 #btnPanel {

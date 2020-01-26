@@ -1,10 +1,12 @@
+'use strict'
+
 let num ;
 let arr = [];
 let currArr = [];
 let sortedArr = [];
 let numOfMoves = 0;
 
-//timer
+// timer
 var minutesLabel = document.getElementById("minutes");
 var secondsLabel = document.getElementById("seconds");
 var totalSeconds = 0;
@@ -15,7 +17,7 @@ function setTime() {
   minutesLabel.innerHTML = Math.floor(totalSeconds / 60);
 }
 
-//default grid of 3 elements
+// default grid of 3 elements
 createGrid(3);
 
 
@@ -42,13 +44,13 @@ function createGrid(n){
     }
 
 
-//random array genrator
+// random array genrator
 for(let i=0; i<num; i++){
     let arrR = [];
     let sArr= [];
     for(let j=0; j<num; j++) {
         let rand = Math.abs(Math.floor(Math.random()*(num*num-(i)*num-j)));
-        console.log(rand);
+        // console.log(rand);
         arrR.push(arr[rand]);
         arr.splice(rand, 1);
     }
@@ -57,11 +59,11 @@ for(let i=0; i<num; i++){
 
 document.getElementById('moves').innerHTML = 'MOVES: '+ numOfMoves;
 
-//grid
+// grid
 for(let i=0; i<currArr.length; i++) {
     for(let j=0; j<currArr.length; j++) {
         if(currArr[i][j]!==num*num) {
-            let gridel = document.createElement("div"); 
+            let gridel = document.createElement("p"); 
             gridel.innerHTML = currArr[i][j];
             gridel.className = 'grid-item';
             gridel.rowIndex = i;
@@ -70,7 +72,7 @@ for(let i=0; i<currArr.length; i++) {
         }
     
         else {
-            let blank = document.createElement("div");    
+            let blank = document.createElement("p");    
             blank.className = 'blank-item';
             blank.rowIndex = i;
             blank.colIndex = j;
@@ -111,6 +113,79 @@ function gridClicked(e){
     }
 }
 
+let left = () => {
+    let el = document.getElementsByClassName('blank-item');
+    let bi = el[0].rowIndex;
+    let bj = el[0].colIndex;
+    if(bj > 0) {
+        let items = document.getElementsByClassName('grid-item');
+        const node = items[bi*num + bj -1];
+        // console.log(node);
+        let value = currArr[bi][bj-1];
+        currArr[bi][bj] = value;
+        currArr[bi][bj-1] = num*num;
+        el[0].innerHTML = value;
+        el[0].className = 'grid-item';
+        
+        node.className = 'blank-item';
+        node.innerHTML = '';
+    }
+}
+
+let right = () => {
+    let el = document.getElementsByClassName('blank-item');
+    let bi = el[0].rowIndex;
+    let bj = el[0].colIndex;
+    if(bj < num-1) {
+        let items = document.getElementsByClassName('grid-item');
+        const node = items[bi*num + bj];
+        let value = currArr[bi][bj+1];
+        currArr[bi][bj] = value;
+        currArr[bi][bj+1] = num*num;
+        el[0].innerHTML = value;
+        el[0].className = 'grid-item';
+        
+        node.className = 'blank-item';
+        node.innerHTML = '';
+    }
+}
+
+let up = () => {
+    let el = document.getElementsByClassName('blank-item');
+    let bi = el[0].rowIndex;
+    let bj = el[0].colIndex;
+    if(bi > 0) {
+        let items = document.getElementsByClassName('grid-item');
+        const node = items[(bi-1)*num + bj];
+        let value = currArr[bi-1][bj];
+        currArr[bi][bj] = value;
+        currArr[bi-1][bj] = num*num;
+        el[0].innerHTML = value;
+        el[0].className = 'grid-item';
+        
+        node.className = 'blank-item';
+        node.innerHTML = '';
+    }
+}
+
+let down = () => {
+    let el = document.getElementsByClassName('blank-item');
+    let bi = el[0].rowIndex;
+    let bj = el[0].colIndex;
+    if(bi < num-1) {
+        let items = document.getElementsByClassName('grid-item');
+        const node = items[(bi+1)*num + bj -1];
+        let value = currArr[bi+1][bj];
+        currArr[bi][bj] = value;
+        currArr[bi+1][bj] = num*num;
+        el[0].innerHTML = value;
+        el[0].className = 'grid-item';
+        
+        node.className = 'blank-item';
+        node.innerHTML = '';
+    }
+}
+
 function undo(){
 
 }
@@ -139,3 +214,20 @@ function hard(){
     totalSeconds = 0;
     numOfMoves = 0
 }
+
+document.onkeydown = function(e) {
+    switch (e.keyCode) {
+        case 37 || 38:
+            left();
+            break;
+        case 38:
+            up();
+            break;
+        case 39:
+            right();
+            break;
+        case 40:
+            down();
+            break;
+    }
+};
