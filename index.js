@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 let num ;
 let arr = [];
@@ -93,24 +93,27 @@ function gridClicked(e){
         let bj = el[0].colIndex;
         // console.log(currArr)
         if((i+1 ==bi && bj==j) || (i ==bi && bj+1==j) || (i-1 ==bi && bj==j) ||(i ==bi && bj-1==j)) {
-            numOfMoves++;
-            document.getElementById('moves').innerHTML = 'MOVES: ' +numOfMoves;
             el[0].innerHTML = value;
             el[0].className = 'grid-item';
             e.target.className = 'blank-item';
             e.target.innerHTML = '';
             currArr[bi][bj] = Number(value);
             currArr[i][j] = num*num;
-
-            let move = document.createElement('p');
-            move.innerHTML = 'MOVE ' + numOfMoves + ' ' + Math.floor(totalSeconds / 60) + ':' + totalSeconds % 60;
-            move.className = 'move';
-            document.getElementById('rightPanel').appendChild(move);
+            addMove(totalSeconds);
         }
         // console.log(JSON.stringify(currArr.sort()) )
         if(JSON.stringify(currArr) == JSON.stringify(sortedArr)) 
         alert('You won'); 
     }
+}
+
+let addMove = (totalSeconds) => {
+    numOfMoves++;
+    document.getElementById('moves').innerHTML = 'MOVES: ' +numOfMoves;
+    let move = document.createElement('p');
+    move.innerHTML = 'MOVE ' + numOfMoves + ' ' + Math.floor(totalSeconds / 60) + ':' + totalSeconds % 60;
+    move.className = 'move';
+    document.getElementById('rightPanel').appendChild(move);
 }
 
 let left = () => {
@@ -129,6 +132,7 @@ let left = () => {
         
         node.className = 'blank-item';
         node.innerHTML = '';
+        addMove(totalSeconds);
     }
 }
 
@@ -147,6 +151,7 @@ let right = () => {
         
         node.className = 'blank-item';
         node.innerHTML = '';
+        addMove(totalSeconds);
     }
 }
 
@@ -165,6 +170,7 @@ let up = () => {
         
         node.className = 'blank-item';
         node.innerHTML = '';
+        addMove(totalSeconds);
     }
 }
 
@@ -183,6 +189,7 @@ let down = () => {
         
         node.className = 'blank-item';
         node.innerHTML = '';
+        addMove(totalSeconds);
     }
 }
 

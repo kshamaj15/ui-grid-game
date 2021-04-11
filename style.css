@@ -40,7 +40,8 @@ main {
 }
 
 .grid-item {
-    height: 50px;
+    height: 38px;
+    padding-top: 12px;
     width: 50px;
     margin: 5px;
     background-color: wheat;
@@ -48,6 +49,10 @@ main {
     font-size: 25px;
     cursor: pointer;
     vertical-align: middle;
+}
+
+.grid-item:hover{
+    box-shadow: 5px 5px 6px 0px rgba(0,0,0,0.4);
 }
 
 .blank-item {
