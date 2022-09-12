@@ -97,6 +97,20 @@ function swapBlocks(block1, block2, isUnduDisable) {
     prev = block1;
     curr = block2;
     document.getElementById('undo').disabled = isUnduDisable;
+
+    if (JSON.stringify(currArr) == JSON.stringify(sortedArr)) {
+        const lotti = document.getElementById('success');
+        const header = document.getElementById('welcome');
+        setTimeout(() => {
+            lotti.style.display = 'block';
+            header.innerHTML = 'Congrats, You Won';
+        })
+        setTimeout(() => {
+            lotti.style.display = 'none';
+            window.location.reload();
+        }, 5000)
+    }
+
 }
 
 function undo() {
@@ -114,19 +128,6 @@ function gridClicked(e) {
 
         if ((i + 1 == bi && bj == j) || (i == bi && bj + 1 == j) || (i - 1 == bi && bj == j) || (i == bi && bj - 1 == j)) {
             swapBlocks(el[0], e.target)
-        }
-
-        if (JSON.stringify(currArr) == JSON.stringify(sortedArr)) {
-            const lotti = document.getElementById('success');
-            const header = document.getElementById('welcome');
-            setTimeout(() => {
-                lotti.style.display = 'block';
-                header.innerHTML = 'Congrats, You Won';
-            })
-            setTimeout(() => {
-                lotti.style.display = 'none';
-                window.location.reload();
-            }, 5000)
         }
     }
 }
