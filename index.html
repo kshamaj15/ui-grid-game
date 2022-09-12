@@ -1,30 +1,39 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>NUBLE</title>
+    <title>GRIDY</title>
     <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
 
-    <header></header>
+    <header>
+        <h1 class="welcome">Welcome</h1>
+    </header>
 
     <main>
         <div id="leftPanel">
-            <p id="moves">MOVES: </p>
-            <P id="time">TIME: <span id="minutes">0</span>: <span id="seconds">0</span></P>
+            <p id="moves">Moves: </p>
+            <P id="time">Timer:
+                <span id="minutes">0</span>:<span id="seconds">0</span>
+            </P>
             <button onclick="undo()">UNDO</button>
             <br>
             <button onClick="window.location.reload();">NEW GAME</button>
-            <br>
-            <button>AUTO SAVE</button>
         </div>
         <div id="grid-container" class="easy" onclick="gridClicked(event);">
         </div>
 
         <div id="rightPanel">
-            <h4>---MOVES---</h4>
+            <h2>---Instructions---</h2>
+
+            <div class="instruction">You need to arrage numbers in ascending order</div>
+            <div class="instruction">You can move only those numbers which are adjacent to empty block</div>
+            <div class="instruction">Click on number to swap its position with empty block</div>
+
         </div>
         <div id="btnPanel">
             <button onclick="easy()">EASY</button>
@@ -35,4 +44,5 @@
     <script src="./index.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </body>
+
 </html>

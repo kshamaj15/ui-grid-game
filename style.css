@@ -1,16 +1,25 @@
+
+body {
+    font-family: 'Calibre', serif;
+}
+
 * {
     padding: 0;
     margin: 0;
 }
 
 header {
-    height: 10%;
-    width: 100%;
-    background-color: rgb(43, 43, 28);
+    background: linear-gradient(60deg, hsl(255, 89%, 30%), hsl(282, 69%, 17%) );;
+    color: white;
+}
+
+header h1 {
+    padding: 20px;
+    text-align: center;
 }
 
 main {
-    background-color: rgb(101, 233, 233);
+    background-color: hsl(255, 100%, 4%);
     height: 90%;
     widows: 100%;
     position: relative;
@@ -23,8 +32,9 @@ main {
     top: 10%;
     left: 50%;
     transform: translateX(-50%);
-    background-color: rgb(41, 209, 209);
-    padding: 10px;
+    background: linear-gradient(45deg, hsl(255, 89%, 50%), hsl(282, 69%, 27%) );
+    padding: 20px;  
+    border-radius: 4px;
 }
 
 .easy {
@@ -40,15 +50,15 @@ main {
 }
 
 .grid-item {
-    height: 38px;
-    padding-top: 12px;
+    height: 50px;
+    background: white;
     width: 50px;
+    border-radius: 4px;
+    box-sizing: border-box;
     margin: 5px;
-    background-color: wheat;
-    border-radius: 10px;
-    font-size: 25px;
+    line-height: 50px;
+    font-size: 20px;
     cursor: pointer;
-    vertical-align: middle;
 }
 
 .grid-item:hover{
@@ -56,12 +66,12 @@ main {
 }
 
 .blank-item {
+    background-color: rgb(14, 10, 3);
+    border-radius: 4px;
     height: 50px;
     width: 50px;
+    border-radius: 4px;
     margin: 5px;
-    background-color: rgb(14, 10, 3);
-    border-radius: 10px;
-    font-size: 25px;
 }
 
 #leftPanel {
@@ -70,6 +80,7 @@ main {
     top: 10%;
     min-width: 200px;
     min-height: 200px;
+    color: white;
 }
 
 p {
@@ -79,7 +90,7 @@ p {
 }
 
 button {
-    background-color: rgb(111, 49, 153);
+    background: linear-gradient(45deg, hsl(255, 89%, 50%), hsl(282, 69%, 27%) );;
     color: white;
     font-family: sans-serif;
     font-weight: 500;
@@ -92,12 +103,23 @@ button {
 #rightPanel {
     position: absolute;
     top: 10%;
-    right: 5%;
-    width: 200px;
-    height: 300px;    
-    background-color: rgb(41, 209, 209);
+    right: 5%;   
+    color: white;
+    text-align: center;
+}
+
+.instruction {
+    background: linear-gradient(45deg, hsl(255, 89%, 50%), hsl(282, 69%, 27%) );
+    text-align: left;
     overflow: auto;
-    
+    color: white;
+    border-radius: 4px;
+    padding: 20px;
+    margin-top: 20px;
+    overflow: hidden;
+    font-size: 14px;
+    width: 220px;
+    font-family: monospace;
 }
 
 #btnPanel {
@@ -108,7 +130,7 @@ button {
 }
 
 .move {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 400;
     padding: 5px;
     margin: 5px;
