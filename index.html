@@ -6,12 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>GRIDY</title>
     <link rel="stylesheet" href="./style.css">
+
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 
 <body>
 
     <header>
-        <h1 class="welcome">Welcome</h1>
+        <h1 id="welcome">Welcome</h1>
     </header>
 
     <main>
@@ -20,7 +22,7 @@
             <P id="time">Timer:
                 <span id="minutes">0</span>:<span id="seconds">0</span>
             </P>
-            <button onclick="undo()">UNDO</button>
+            <button id="undo" disabled onclick="undo()">UNDO</button>
             <br>
             <button onClick="window.location.reload();">NEW GAME</button>
         </div>
@@ -36,10 +38,13 @@
 
         </div>
         <div id="btnPanel">
-            <button onclick="easy()">EASY</button>
-            <button onclick="medium()">MEDIUM</button>
-            <button onclick="hard()">HARD</button>
+            <button onclick="gotoCompexity(3, 'easy')">EASY</button>
+            <button onclick="gotoCompexity(4, 'medium')">MEDIUM</button>
+            <button onclick="gotoCompexity(5, 'hard')">HARD</button>
         </div>
+        <lottie-player id="success" src="https://assets7.lottiefiles.com/packages/lf20_wys2rrr6.json"
+            background="transparent" speed="1" style="width: 100vw; height: 110vh; position: fixed; top:0" loop controls
+            autoplay></lottie-player>
     </main>
     <script src="./index.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

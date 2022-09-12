@@ -5,6 +5,7 @@ let arr = [];
 let currArr = [];
 let sortedArr = [];
 let numOfMoves = 0;
+let prev, curr;
 
 // timer
 var minutesLabel = document.getElementById("minutes");
@@ -41,7 +42,6 @@ function createGrid(n) {
         }
         sortedArr.push(sArr);
     }
-
 
     // random array genrator
     for (let i = 0; i < num; i++) {
@@ -81,9 +81,30 @@ function createGrid(n) {
     }
 }
 
+function swapBlocks(block1, block2, isUnduDisable) {
+    let value = block2.innerHTML;
+    let bi = block1.rowIndex;
+    let bj = block1.colIndex;
+    let i = block2.rowIndex;
+    let j = block2.colIndex;
+    block1.innerHTML = value;
+    block1.className = 'grid-item';
+    block2.className = 'blank-item';
+    block2.innerHTML = '';
+    currArr[bi][bj] = Number(value);
+    currArr[i][j] = num * num;
+    addMove(totalSeconds);
+    prev = block1;
+    curr = block2;
+    document.getElementById('undo').disabled = isUnduDisable;
+}
+
+function undo() {
+    swapBlocks(curr, prev, true);
+}
+
 function gridClicked(e) {
     if (e.target.className === 'grid-item') {
-        let value = e.target.innerHTML;
         let el = document.getElementsByClassName('blank-item');
 
         let i = e.target.rowIndex;
@@ -92,17 +113,21 @@ function gridClicked(e) {
         let bj = el[0].colIndex;
 
         if ((i + 1 == bi && bj == j) || (i == bi && bj + 1 == j) || (i - 1 == bi && bj == j) || (i == bi && bj - 1 == j)) {
-            el[0].innerHTML = value;
-            el[0].className = 'grid-item';
-            e.target.className = 'blank-item';
-            e.target.innerHTML = '';
-            currArr[bi][bj] = Number(value);
-            currArr[i][j] = num * num;
-            addMove(totalSeconds);
+            swapBlocks(el[0], e.target)
         }
 
-        if (JSON.stringify(currArr) == JSON.stringify(sortedArr))
-            alert('You won');
+        if (JSON.stringify(currArr) == JSON.stringify(sortedArr)) {
+            const lotti = document.getElementById('success');
+            const header = document.getElementById('welcome');
+            setTimeout(() => {
+                lotti.style.display = 'block';
+                header.innerHTML = 'Congrats, You Won';
+            })
+            setTimeout(() => {
+                lotti.style.display = 'none';
+                window.location.reload();
+            }, 5000)
+        }
     }
 }
 
@@ -117,16 +142,7 @@ let left = () => {
     if (bj > 0) {
         let items = document.getElementsByClassName('grid-item');
         const node = items[bi * num + bj - 1];
-
-        let value = currArr[bi][bj - 1];
-        currArr[bi][bj] = value;
-        currArr[bi][bj - 1] = num * num;
-        el[0].innerHTML = value;
-        el[0].className = 'grid-item';
-
-        node.className = 'blank-item';
-        node.innerHTML = '';
-
+        swapBlocks(el[0], node)
     }
 }
 
@@ -137,15 +153,7 @@ let right = () => {
     if (bj < num - 1) {
         let items = document.getElementsByClassName('grid-item');
         const node = items[bi * num + bj];
-        let value = currArr[bi][bj + 1];
-        currArr[bi][bj] = value;
-        currArr[bi][bj + 1] = num * num;
-        el[0].innerHTML = value;
-        el[0].className = 'grid-item';
-
-        node.className = 'blank-item';
-        node.innerHTML = '';
-
+        swapBlocks(el[0], node)
     }
 }
 
@@ -156,15 +164,7 @@ let up = () => {
     if (bi > 0) {
         let items = document.getElementsByClassName('grid-item');
         const node = items[(bi - 1) * num + bj];
-        let value = currArr[bi - 1][bj];
-        currArr[bi][bj] = value;
-        currArr[bi - 1][bj] = num * num;
-        el[0].innerHTML = value;
-        el[0].className = 'grid-item';
-
-        node.className = 'blank-item';
-        node.innerHTML = '';
-
+        swapBlocks(el[0], node)
     }
 }
 
@@ -175,45 +175,15 @@ let down = () => {
     if (bi < num - 1) {
         let items = document.getElementsByClassName('grid-item');
         const node = items[(bi + 1) * num + bj - 1];
-        let value = currArr[bi + 1][bj];
-        currArr[bi][bj] = value;
-        currArr[bi + 1][bj] = num * num;
-        el[0].innerHTML = value;
-        el[0].className = 'grid-item';
-
-        node.className = 'blank-item';
-        node.innerHTML = '';
-
+        swapBlocks(el[0], node)
     }
 }
 
-function undo() {
-
-}
-
-function easy() {
-    num = 3;
-    createGrid(3);
-    document.getElementById('grid-container').className = 'easy';
+function gotoCompexity(n, text) {
+    createGrid(n);
+    document.getElementById('grid-container').className = text;
     totalSeconds = 0;
     numOfMoves = 0;
-}
-
-function medium() {
-    num = 4;
-    createGrid(4);
-    document.getElementById('grid-container').className = 'medium';
-    totalSeconds = 0;
-    numOfMoves = 0;
-
-}
-
-function hard() {
-    num = 5;
-    createGrid(5);
-    document.getElementById('grid-container').className = 'hard';
-    totalSeconds = 0;
-    numOfMoves = 0
 }
 
 document.onkeydown = function (e) {
